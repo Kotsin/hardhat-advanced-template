@@ -5,13 +5,13 @@
     ]
   },
   "scripts": {
-    "formatc": "pnpm prettier --write ./contracts/*.sol && pnpm prettier --write ./contracts/**/*.sol",
-    "formatt": "pnpm prettier --write ./test",
-    "formatd": "pnpm prettier --write ./deploy",
-    "format": "pnpm formatc && pnpm formatt && pnpm formatd",
-    "compile": "pnpm formatc && hh compile",
-    "test": "pnpm formatt && hh test",
-    "sizec": "pnpm compile && hh size-contracts"
+    "formatc": "npx prettier --write ./contracts/*.sol && npx prettier --write ./contracts/**/*.sol",
+    "formatt": "npx prettier --write ./test",
+    "formatd": "npx prettier --write ./deploy",
+    "format": "npx formatc && npx formatt && npx formatd",
+    "compile": "npx formatc && npx hardhat compile",
+    "test": "npx formatt && npx hardhat test",
+    "sizec": "npx compile && npx hardhat size-contracts"
   },
   "name": "template",
   "devDependencies": {
