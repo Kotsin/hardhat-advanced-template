@@ -1,4 +1,5 @@
 {
+  "name": "template",
   "prettier": {
     "plugins": [
       "./node_modules/prettier-plugin-solidity"
@@ -13,7 +14,6 @@
     "test": "npx formatt && npx hardhat test",
     "sizec": "npx compile && npx hardhat size-contracts"
   },
-  "name": "template",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@0.3.0-beta.13",
     "@nomiclabs/hardhat-etherscan": "3.1.0",
@@ -43,7 +43,7 @@
     "hardhat-gas-reporter": "^1.0.4",
     "prettier": "^2.3.2",
     "prettier-plugin-solidity": "1.0.0-beta.19",
-    "solhint": "^3.3.6",
+    "solhint": "^3.3.7",
     "solidity-coverage": "^0.7.21",
     "ts-node": "^10.1.0",
     "typechain": "^5.2.0",
