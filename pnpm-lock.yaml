@@ -32,7 +32,6 @@ specifiers:
   prettier: ^2.3.2
   prettier-plugin-solidity: 1.0.0-beta.19
   solhint: ^3.3.7
-  solidity: ^0.0.1
   solidity-coverage: ^0.7.21
   ts-node: ^10.1.0
   typechain: ^5.2.0
@@ -72,7 +71,6 @@ devDependencies:
   prettier: 2.8.1
   prettier-plugin-solidity: 1.0.0-beta.19_prettier@2.8.1
   solhint: 3.3.7
-  solidity: 0.0.1
   solidity-coverage: 0.7.22
   ts-node: 10.9.1_crxqgk3x743ztdhwvjtekvysqe
   typechain: 5.2.0_typescript@4.9.4
@@ -9063,10 +9061,6 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
-    dev: true
-
-  /solidity/0.0.1:
-    resolution: {integrity: sha512-32RjRNI86JUiaJcjbp2mbttRqLvdEjZJV0qjxGz9TUlwZKOMxVVMGkwBq8A4aHvQNJqA9oydL6/eAwHzElmNyg==}
     dev: true
 
   /source-map-resolve/0.5.3:
