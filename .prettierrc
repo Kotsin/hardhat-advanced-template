@@ -14,5 +14,8 @@
         "explicitTypes": "always"
       }
     }
+  ],
+  "plugins": [
+    "./node_modules/prettier-plugin-solidity"
   ]
 }
