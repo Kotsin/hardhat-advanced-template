@@ -5,6 +5,7 @@ import { DELAY_BEFORE_VERIFY, HARDHAT_CHAIN_ID } from './config'
 export const verify = async (
   hre: HardhatRuntimeEnvironment,
   contract: string,
+  // eslint-disable-next-line
   constructorArguments: any[],
 ): Promise<void> => {
   if ((await hre.getChainId()) === HARDHAT_CHAIN_ID) return

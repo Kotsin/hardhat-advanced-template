@@ -1,12 +1,12 @@
 import { BigNumber } from 'ethers'
 
 export function customError(error: string, args?: ErrorArg[]) {
-  let errorArgs = !!args ? concatErrorArgs(args) : ''
+  const errorArgs = args ? concatErrorArgs(args) : ''
   return `VM Exception while processing transaction: reverted with custom error '${error}(${errorArgs})'`
 }
 
-function concatErrorArgs(arr: Array<any>) {
-  let result: string = ''
+function concatErrorArgs(arr: Array<ErrorArg>) {
+  let result = ''
   for (let i = 0; i < arr.length; i++) {
     result += parseError(arr[i])
     if (i < arr.length - 1) {
@@ -28,5 +28,5 @@ function parseError(error?: ErrorArg) {
   }
 }
 
-type ErrorArgFraction = Number | BigNumber | String
+type ErrorArgFraction = number | BigNumber | string
 type ErrorArg = ErrorArgFraction | Array<ErrorArgFraction>
