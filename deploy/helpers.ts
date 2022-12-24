@@ -1,19 +1,44 @@
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 
-import { DELAY_BEFORE_VERIFY, HARDHAT_CHAIN_ID } from './config'
+import { CONFIRMATIONS_BEFORE_VERIFICATION } from './config'
 
-export const verify = async (
+export async function deployAndVerify(
   hre: HardhatRuntimeEnvironment,
-  contract: string,
-  // eslint-disable-next-line
-  constructorArguments: any[],
-): Promise<void> => {
-  if ((await hre.getChainId()) === HARDHAT_CHAIN_ID) return
+  contractName: string,
+  options?: {
+    constructorArguments?: any[],
+    fromNamedAccount?: string,
+    deploymentName?: string,
+  },
+) {
+  const { deployments, getNamedAccounts } = hre
+  const { deploy } = deployments
 
-  await new Promise((r) => setTimeout(r, DELAY_BEFORE_VERIFY))
+  const deployer = (await getNamedAccounts())[options?.fromNamedAccount ?? "deployer"]
 
-  await hre.run('verify:verify', {
-    address: (await hre.ethers.getContract(contract)).address,
-    constructorArguments,
-  })
+  let waitConfirmations: number | undefined = CONFIRMATIONS_BEFORE_VERIFICATION
+  // In hardhat we don't need to verify therefore wait for confirmations
+  if (isHardhatNetwork(hre)) {
+    waitConfirmations = undefined
+  }
+  
+  // Deploy the contract
+  const deploymentReceipt = await deploy(options?.deploymentName ?? contractName, {
+    from: deployer,
+    contract: contractName,
+    waitConfirmations,
+    args: options?.constructorArguments
+  });
+
+  // If we are not on the Hardhat network, verify the contract
+  if (!isHardhatNetwork(hre)) {
+    await hre.run('verify:verify', {
+      address: deploymentReceipt.address,
+      constructorArguments: options?.constructorArguments,
+    });
+  }
+}
+
+export function isHardhatNetwork(hre: HardhatRuntimeEnvironment): boolean {
+  return hre.network.name === 'hardhat'
 }
