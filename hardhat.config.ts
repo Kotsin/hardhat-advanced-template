@@ -36,17 +36,16 @@ const config: HardhatUserConfig = {
   networks: {
     sepolia: {
       url: process.env.SEPOLIA_URL ?? '',
-      accounts: [process.env.DEPLOYER_PRIVATE_KEY, process.env.OWNER_PRIVATE_KEY, process.env.SIGNER_PRIVATE_KEY],
+      verify: {
+        etherscan: {
+          apiKey: process.env.ETHERSCAN_API_KEY,
+        },
+      },
     },
   },
   gasReporter: {
     enabled: !!process.env.REPORT_GAS,
     currency: 'USD',
-  },
-  etherscan: {
-    apiKey: {
-      sepolia: process.env.ETHERSCAN_API_KEY ?? '',
-    },
   },
 }
 
